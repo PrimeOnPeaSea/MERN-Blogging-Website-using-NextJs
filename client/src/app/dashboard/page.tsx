@@ -19,7 +19,7 @@ const Dashboard = () => {
     const asyncFn = async () => {
       try {
         const res = await axios.get(
-          `http://localhost:5001/api/blogs/user/${userId}`
+          `https://mern-blogging-website-using-nextjs.onrender.com/api/blogs/user/${userId}`
         );
         setBlogs(res.data.user.blogs);
       } catch (error) {

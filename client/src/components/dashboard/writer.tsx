@@ -11,7 +11,7 @@ const Writer = ({ id }: { id: string }) => {
     const fetchWriter = async () => {
       try {
         const res = await axios.get(
-          `http://localhost:5001/api/blogs/user/${id}`
+          `https://mern-blogging-website-using-nextjs.onrender.com/api/blogs/user/${id}`
         );
         setWriter(res.data.user);
       } catch (err) {

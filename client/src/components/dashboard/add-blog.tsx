@@ -50,12 +50,15 @@ const AddBlog = ({ setBlogs }: { setBlogs: any }) => {
     const { title, desc, image } = values;
     try {
       const res = await axios
-        .post("http://localhost:5001/api/blogs/add", {
-          title: title,
-          desc: desc,
-          img: image,
-          user: localStorage.getItem("userId"),
-        })
+        .post(
+          "https://mern-blogging-website-using-nextjs.onrender.com/api/blogs/add",
+          {
+            title: title,
+            desc: desc,
+            img: image,
+            user: localStorage.getItem("userId"),
+          }
+        )
         .catch((err) => console.log(err));
       if (res) {
         const blog = res.data.blog;

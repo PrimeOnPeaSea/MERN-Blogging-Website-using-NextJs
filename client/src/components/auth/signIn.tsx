@@ -54,10 +54,13 @@ const SignIn = ({
   async function onLoginFormSubmit(values: z.infer<typeof loginSchema>) {
     const { email, password } = values;
     const res = await axios
-      .post("http://localhost:5001/api/users/login", {
-        email,
-        password,
-      })
+      .post(
+        "https://mern-blogging-website-using-nextjs.onrender.com/api/users/login",
+        {
+          email,
+          password,
+        }
+      )
       .catch((err) => console.log(err));
     if (res) {
       res.data.user._id && localStorage.setItem("userId", res.data.user._id);
@@ -85,11 +88,14 @@ const SignIn = ({
   async function onRegisterFormSubmit(values: z.infer<typeof registerSchema>) {
     const { name, email, password } = values;
     const res = await axios
-      .post("http://localhost:5001/api/users/signup", {
-        name,
-        email,
-        password,
-      })
+      .post(
+        "https://mern-blogging-website-using-nextjs.onrender.com/api/users/signup",
+        {
+          name,
+          email,
+          password,
+        }
+      )
       .catch((err) => console.log(err));
     if (res) {
       res.data.user._id && localStorage.setItem("userId", res.data.user._id);

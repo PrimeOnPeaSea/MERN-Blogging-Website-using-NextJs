@@ -14,7 +14,9 @@ export default function Home() {
   useEffect(() => {
     const fetchBlogs = async () => {
       try {
-        const res = await axios.get("http://localhost:5001/api/blogs");
+        const res = await axios.get(
+          "https://mern-blogging-website-using-nextjs.onrender.com/api/blogs"
+        );
         setBlogs(res.data.blogs);
       } catch (err) {
         console.error(err);

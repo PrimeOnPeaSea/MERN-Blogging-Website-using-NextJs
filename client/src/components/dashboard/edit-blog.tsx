@@ -46,10 +46,13 @@ const EditBlog = ({ id, setBlog }: { id: string; setBlog: any }) => {
     const { title, desc } = values;
     try {
       const res = await axios
-        .put(`http://localhost:5001/api/blogs/update/${id}`, {
-          title: title,
-          desc: desc,
-        })
+        .put(
+          `https://mern-blogging-website-using-nextjs.onrender.com/api/blogs/update/${id}`,
+          {
+            title: title,
+            desc: desc,
+          }
+        )
         .catch((err) => console.log(err));
       if (res) {
         const blog = res.data.blog;

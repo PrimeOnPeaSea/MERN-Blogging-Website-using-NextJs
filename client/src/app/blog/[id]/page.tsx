@@ -31,7 +31,7 @@ const Blog = ({ params }: { params: { id: string } }) => {
     const fetchBlog = async () => {
       try {
         const res = await axios.get(
-          `http://localhost:5001/api/blogs/${params.id}`
+          `https://mern-blogging-website-using-nextjs.onrender.com/api/blogs/${params.id}`
         );
         setBlog(res.data.blog);
         console.log(res.data.blog);
@@ -80,7 +80,7 @@ const Blog = ({ params }: { params: { id: string } }) => {
                     onClick={async () => {
                       try {
                         await axios.delete(
-                          `http://localhost:5001/api/blogs/${params.id}`
+                          `https://mern-blogging-website-using-nextjs.onrender.com/api/blogs/${params.id}`
                         );
                         toast.success("Blog Deleted Successfully!");
                         window.location.href = "/";
