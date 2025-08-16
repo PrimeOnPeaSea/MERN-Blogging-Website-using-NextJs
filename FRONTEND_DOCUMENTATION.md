@@ -1,6 +1,7 @@
 # Frontend Documentation - Next.js Blogging Application
 
 ## Table of Contents
+
 1. [Frontend Overview](#frontend-overview)
 2. [Technology Stack](#technology-stack)
 3. [Project Architecture](#project-architecture)
@@ -24,6 +25,7 @@
 The frontend is built with Next.js 14 using the App Router, TypeScript, and Tailwind CSS. It provides a modern, responsive interface for a blogging platform with user authentication, blog management, and a clean reading experience.
 
 ### Key Features
+
 - **Server-Side Rendering (SSR)** with Next.js App Router
 - **TypeScript** for type safety
 - **Responsive Design** using Tailwind CSS
@@ -36,12 +38,14 @@ The frontend is built with Next.js 14 using the App Router, TypeScript, and Tail
 ## Technology Stack
 
 ### Core Technologies
+
 - **Next.js 14**: React framework with App Router
 - **React 18**: JavaScript library for building user interfaces
 - **TypeScript**: Typed superset of JavaScript
 - **Tailwind CSS**: Utility-first CSS framework
 
 ### UI and Styling
+
 - **shadcn/ui**: Modern React component library
 - **Radix UI**: Unstyled, accessible UI primitives
 - **Lucide React**: Beautiful & consistent icons
@@ -49,16 +53,19 @@ The frontend is built with Next.js 14 using the App Router, TypeScript, and Tail
 - **Tailwind CSS Animate**: Animation utilities
 
 ### Form Management
+
 - **React Hook Form**: Performant forms with easy validation
 - **Zod**: TypeScript-first schema validation
 - **@hookform/resolvers**: Validation library resolvers
 
 ### HTTP and State
+
 - **Axios**: Promise-based HTTP client
 - **React Hooks**: Built-in state management
 - **localStorage**: Client-side storage for user sessions
 
 ### Development Tools
+
 - **ESLint**: Code linting
 - **PostCSS**: CSS processing
 - **Tailwind CSS IntelliSense**: VS Code extension support
@@ -66,6 +73,7 @@ The frontend is built with Next.js 14 using the App Router, TypeScript, and Tail
 ## Project Architecture
 
 ### App Router Structure
+
 ```
 src/app/
 ├── layout.tsx          # Root layout (wrapper for all pages)
@@ -80,6 +88,7 @@ src/app/
 ```
 
 ### Component Architecture
+
 ```
 src/components/
 ├── ui/                 # shadcn/ui base components
@@ -90,6 +99,7 @@ src/components/
 ```
 
 ### Data Flow
+
 1. **User Interaction** → Component state changes
 2. **API Calls** → Axios requests to backend
 3. **State Updates** → React re-renders
@@ -151,6 +161,7 @@ client/
 ## Setup and Installation
 
 ### Prerequisites
+
 - Node.js 16+ installed
 - npm or yarn package manager
 - Basic knowledge of React and TypeScript
@@ -158,32 +169,35 @@ client/
 ### Installation Steps
 
 1. **Navigate to client directory**:
+
 ```bash
 cd client
 ```
 
 2. **Install dependencies**:
+
 ```bash
 npm install
 ```
 
 3. **Start development server**:
+
 ```bash
 npm run dev
 ```
 
 4. **Open browser**:
-Navigate to `http://localhost:3000`
+   Navigate to `http://localhost:3000`
 
 ### Available Scripts
 
 ```json
 {
   "scripts": {
-    "dev": "next dev",           // Start development server
-    "build": "next build",       // Build for production
-    "start": "next start",       // Start production server
-    "lint": "next lint"          // Run ESLint
+    "dev": "next dev", // Start development server
+    "build": "next build", // Build for production
+    "start": "next start", // Start production server
+    "lint": "next lint" // Run ESLint
   }
 }
 ```
@@ -191,6 +205,7 @@ Navigate to `http://localhost:3000`
 ## Configuration
 
 ### Next.js Configuration (`next.config.mjs`)
+
 ```javascript
 /** @type {import('next').NextConfig} */
 const nextConfig = {};
@@ -199,6 +214,7 @@ export default nextConfig;
 ```
 
 ### Tailwind CSS Configuration (`tailwind.config.ts`)
+
 ```typescript
 import type { Config } from "tailwindcss";
 
@@ -213,17 +229,18 @@ const config: Config = {
     extend: {
       // Custom color scheme
       colors: {
-        background: 'hsl(var(--background))',
-        foreground: 'hsl(var(--foreground))',
+        background: "hsl(var(--background))",
+        foreground: "hsl(var(--foreground))",
         // ... more colors
-      }
-    }
+      },
+    },
   },
   plugins: [require("tailwindcss-animate")],
 };
 ```
 
 ### TypeScript Configuration (`tsconfig.json`)
+
 ```json
 {
   "compilerOptions": {
@@ -259,6 +276,7 @@ const config: Config = {
 Next.js 14 uses the App Router for file-based routing:
 
 #### 1. Root Layout (`src/app/layout.tsx`)
+
 ```typescript
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
@@ -293,12 +311,14 @@ export default function RootLayout({
 ```
 
 **Features:**
+
 - Global layout wrapper for all pages
 - Font optimization with Google Fonts
 - Global components (Header, Footer, Toaster)
 - SEO metadata configuration
 
 #### 2. Homepage (`src/app/page.tsx`)
+
 ```typescript
 "use client";
 
@@ -335,12 +355,14 @@ export default function Home() {
 ```
 
 **Features:**
+
 - Displays all blog posts
 - API integration with useEffect
 - Responsive grid layout
 - Blog card components
 
 #### 3. Dynamic Blog Page (`src/app/blog/[id]/page.tsx`)
+
 ```typescript
 "use client";
 
@@ -353,7 +375,7 @@ export default function BlogPage({ params }: { params: { id: string } }) {
   const [userId, setUserId] = useState<string | null>(null);
 
   // Fetch blog data and handle edit/delete
-  
+
   return (
     <main className="container mx-auto">
       {/* Blog content display */}
@@ -364,12 +386,14 @@ export default function BlogPage({ params }: { params: { id: string } }) {
 ```
 
 **Features:**
+
 - Dynamic routing with `[id]` parameter
 - Individual blog post display
 - Owner-only edit/delete functionality
 - Back navigation
 
 #### 4. Dashboard Page (`src/app/dashboard/page.tsx`)
+
 ```typescript
 "use client";
 
@@ -383,7 +407,7 @@ export default function Dashboard() {
       window.location.href = "/";
       return;
     }
-    
+
     // Fetch user's blogs
   }, []);
 
@@ -396,6 +420,7 @@ export default function Dashboard() {
 ```
 
 **Features:**
+
 - Protected route (authentication required)
 - User's personal blog management
 - Create new blog functionality
@@ -406,6 +431,7 @@ export default function Dashboard() {
 ### Authentication Components
 
 #### 1. Sign In Component (`src/components/auth/signIn.tsx`)
+
 ```typescript
 "use client";
 
@@ -427,15 +453,12 @@ const SignIn = ({ setUserId, setUserName }: AuthProps) => {
     // Handle login logic
   }
 
-  return (
-    <Dialog>
-      {/* Login form with validation */}
-    </Dialog>
-  );
+  return <Dialog>{/* Login form with validation */}</Dialog>;
 };
 ```
 
 **Features:**
+
 - Dual login/register forms
 - Zod schema validation
 - React Hook Form integration
@@ -443,6 +466,7 @@ const SignIn = ({ setUserId, setUserName }: AuthProps) => {
 - Local storage session management
 
 #### 2. User Button Component (`src/components/auth/userButton.tsx`)
+
 ```typescript
 "use client";
 
@@ -455,18 +479,15 @@ const UserButton = () => {
   }, []);
 
   if (userId) {
-    return (
-      <DropdownMenu>
-        {/* User profile dropdown */}
-      </DropdownMenu>
-    );
+    return <DropdownMenu>{/* User profile dropdown */}</DropdownMenu>;
   }
-  
+
   return <SignIn setUserId={setUserId} setUserName={setUserName} />;
 };
 ```
 
 **Features:**
+
 - Conditional rendering based on auth state
 - User profile dropdown
 - Session management
@@ -475,10 +496,11 @@ const UserButton = () => {
 ### Dashboard Components
 
 #### 1. Add Blog Component (`src/components/dashboard/add-blog.tsx`)
+
 ```typescript
 const AddBlog = ({ setBlogs }: { setBlogs: any }) => {
   const [open, setOpen] = useState(false);
-  
+
   const form = useForm<BlogFormData>({
     resolver: zodResolver(formSchema),
   });
@@ -496,34 +518,34 @@ const AddBlog = ({ setBlogs }: { setBlogs: any }) => {
 ```
 
 **Features:**
+
 - Modal dialog form
 - Form validation with Zod
 - Image URL input
 - Real-time state updates
 
 #### 2. Edit Blog Component (`src/components/dashboard/edit-blog.tsx`)
+
 ```typescript
 const EditBlog = ({ id, setBlog }: EditBlogProps) => {
   // Similar structure to AddBlog but for editing
-  
+
   async function onSubmit(values: EditFormData) {
     // Update existing blog post
   }
 
-  return (
-    <Dialog>
-      {/* Blog editing form */}
-    </Dialog>
-  );
+  return <Dialog>{/* Blog editing form */}</Dialog>;
 };
 ```
 
 **Features:**
+
 - Pre-populated form with existing data
 - Update functionality
 - Optimistic UI updates
 
 #### 3. Writer Component (`src/components/dashboard/writer.tsx`)
+
 ```typescript
 const Writer = ({ id }: { id: string }) => {
   const [writer, setWriter] = useState<User | null>(null);
@@ -537,6 +559,7 @@ const Writer = ({ id }: { id: string }) => {
 ```
 
 **Features:**
+
 - Fetch and display author name
 - API integration
 - Simple display component
@@ -544,6 +567,7 @@ const Writer = ({ id }: { id: string }) => {
 ### Layout Components
 
 #### 1. Header Component (`src/components/header.tsx`)
+
 ```typescript
 const Header = () => {
   return (
@@ -561,18 +585,18 @@ const Header = () => {
 ```
 
 **Features:**
+
 - Responsive navigation
 - Brand logo and title
 - User authentication state
 - Clean, modern design
 
 #### 2. Footer Component (`src/components/footer.tsx`)
+
 ```typescript
 const Footer = () => {
   return (
-    <footer className="bg-card py-4 mt-auto">
-      {/* Footer content */}
-    </footer>
+    <footer className="bg-card py-4 mt-auto">{/* Footer content */}</footer>
   );
 };
 ```
@@ -580,6 +604,7 @@ const Footer = () => {
 ## State Management
 
 ### Local Component State
+
 ```typescript
 // Using useState for component-level state
 const [blogs, setBlogs] = useState<Blog[]>([]);
@@ -588,6 +613,7 @@ const [error, setError] = useState<string | null>(null);
 ```
 
 ### Session Management
+
 ```typescript
 // localStorage for user sessions
 useEffect(() => {
@@ -609,6 +635,7 @@ localStorage.removeItem("userName");
 ```
 
 ### Form State
+
 ```typescript
 // React Hook Form for form state
 const form = useForm<FormData>({
@@ -624,6 +651,7 @@ const form = useForm<FormData>({
 ## API Integration
 
 ### Axios Configuration
+
 ```typescript
 import axios from "axios";
 
@@ -653,6 +681,7 @@ const createBlog = async (blogData: BlogData) => {
 ```
 
 ### Error Handling
+
 ```typescript
 const handleAPICall = async () => {
   try {
@@ -674,6 +703,7 @@ const handleAPICall = async () => {
 ### Tailwind CSS Usage
 
 #### Responsive Design
+
 ```tsx
 <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
   {/* Responsive grid layout */}
@@ -685,6 +715,7 @@ const handleAPICall = async () => {
 ```
 
 #### Component Styling
+
 ```tsx
 <article className="bg-card rounded-lg shadow overflow-hidden">
   <Image className="w-full h-[300px] object-cover" />
@@ -698,6 +729,7 @@ const handleAPICall = async () => {
 ### shadcn/ui Integration
 
 #### Button Component
+
 ```tsx
 import { Button } from "@/components/ui/button";
 
@@ -711,6 +743,7 @@ import { Button } from "@/components/ui/button";
 ```
 
 #### Dialog Component
+
 ```tsx
 import {
   Dialog,
@@ -730,10 +763,11 @@ import {
     </DialogHeader>
     {/* Dialog content */}
   </DialogContent>
-</Dialog>
+</Dialog>;
 ```
 
 ### CSS Custom Properties
+
 ```css
 /* globals.css */
 @tailwind base;
@@ -762,6 +796,7 @@ import {
 ## Forms and Validation
 
 ### React Hook Form Setup
+
 ```typescript
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -788,6 +823,7 @@ const form = useForm<FormData>({
 ```
 
 ### Form Components
+
 ```tsx
 import {
   Form,
@@ -815,10 +851,11 @@ import {
     />
     <Button type="submit">Submit</Button>
   </form>
-</Form>
+</Form>;
 ```
 
 ### Validation Schemas
+
 ```typescript
 // Login schema
 const loginSchema = z.object({
@@ -844,6 +881,7 @@ const blogSchema = z.object({
 ## TypeScript Integration
 
 ### Type Definitions (`src/lib/types.ts`)
+
 ```typescript
 // Core entity types
 type Blog = {
@@ -889,6 +927,7 @@ export type { Blog, User, AuthProps, BlogCardProps, EditBlogProps };
 ```
 
 ### Component TypeScript Examples
+
 ```typescript
 // Functional component with props
 interface ComponentProps {
@@ -897,13 +936,13 @@ interface ComponentProps {
   optional?: boolean;
 }
 
-const MyComponent: React.FC<ComponentProps> = ({ 
-  title, 
-  children, 
-  optional = false 
+const MyComponent: React.FC<ComponentProps> = ({
+  title,
+  children,
+  optional = false,
 }) => {
   const [state, setState] = useState<string>("");
-  
+
   return (
     <div>
       <h1>{title}</h1>
@@ -926,6 +965,7 @@ const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 ## Performance Optimization
 
 ### Next.js Image Optimization
+
 ```tsx
 import Image from "next/image";
 
@@ -938,29 +978,28 @@ import Image from "next/image";
   priority // For above-the-fold images
   placeholder="blur" // Optional blur placeholder
   blurDataURL="data:image/..." // Base64 blur data
-/>
+/>;
 ```
 
 ### Code Splitting and Dynamic Imports
+
 ```typescript
 // Dynamic component loading
-import dynamic from 'next/dynamic';
+import dynamic from "next/dynamic";
 
-const DynamicComponent = dynamic(
-  () => import('@/components/heavy-component'),
-  { 
-    loading: () => <p>Loading...</p>,
-    ssr: false // Disable SSR if needed
-  }
-);
+const DynamicComponent = dynamic(() => import("@/components/heavy-component"), {
+  loading: () => <p>Loading...</p>,
+  ssr: false, // Disable SSR if needed
+});
 ```
 
 ### Lazy Loading
+
 ```typescript
 // React lazy loading
-import { lazy, Suspense } from 'react';
+import { lazy, Suspense } from "react";
 
-const LazyComponent = lazy(() => import('./LazyComponent'));
+const LazyComponent = lazy(() => import("./LazyComponent"));
 
 function App() {
   return (
@@ -974,23 +1013,27 @@ function App() {
 ```
 
 ### Memoization
+
 ```typescript
-import { useMemo, useCallback } from 'react';
+import { useMemo, useCallback } from "react";
 
 const MyComponent = ({ data, onSelect }) => {
   // Memoize expensive calculations
   const processedData = useMemo(() => {
-    return data.map(item => expensiveOperation(item));
+    return data.map((item) => expensiveOperation(item));
   }, [data]);
 
   // Memoize callbacks
-  const handleClick = useCallback((id: string) => {
-    onSelect(id);
-  }, [onSelect]);
+  const handleClick = useCallback(
+    (id: string) => {
+      onSelect(id);
+    },
+    [onSelect]
+  );
 
   return (
     <div>
-      {processedData.map(item => (
+      {processedData.map((item) => (
         <Item key={item.id} onClick={() => handleClick(item.id)} />
       ))}
     </div>
@@ -1003,15 +1046,18 @@ const MyComponent = ({ data, onSelect }) => {
 ### Vercel Deployment (Recommended)
 
 1. **Connect Repository**:
+
    - Push code to GitHub/GitLab/Bitbucket
    - Connect repository to Vercel
 
 2. **Environment Variables**:
+
 ```env
 NEXT_PUBLIC_API_URL=https://your-api-domain.com
 ```
 
 3. **Build Configuration**:
+
 ```json
 {
   "buildCommand": "npm run build",
@@ -1023,19 +1069,21 @@ NEXT_PUBLIC_API_URL=https://your-api-domain.com
 ### Netlify Deployment
 
 1. **Build Settings**:
+
    - Build command: `npm run build`
    - Publish directory: `.next`
 
 2. **Next.js Configuration**:
+
 ```javascript
 // next.config.mjs
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: 'export', // For static export if needed
+  output: "export", // For static export if needed
   trailingSlash: true,
   images: {
-    unoptimized: true // For static export
-  }
+    unoptimized: true, // For static export
+  },
 };
 
 export default nextConfig;
@@ -1085,27 +1133,29 @@ CMD ["node", "server.js"]
 ## Best Practices
 
 ### Code Organization
+
 ```typescript
 // Group related imports
-import { useState, useEffect, useCallback } from 'react';
-import { useRouter } from 'next/navigation';
+import { useState, useEffect, useCallback } from "react";
+import { useRouter } from "next/navigation";
 
 // Third-party imports
-import axios from 'axios';
-import { toast } from 'sonner';
+import axios from "axios";
+import { toast } from "sonner";
 
 // UI component imports
-import { Button } from '@/components/ui/button';
-import { Card } from '@/components/ui/card';
+import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
 
 // Local component imports
-import Header from '@/components/header';
+import Header from "@/components/header";
 
 // Type imports
-import type { Blog, User } from '@/lib/types';
+import type { Blog, User } from "@/lib/types";
 ```
 
 ### Component Structure
+
 ```typescript
 // 1. Imports
 // 2. Types/Interfaces
@@ -1122,43 +1172,40 @@ interface ComponentProps {
 const MyComponent: React.FC<ComponentProps> = ({ prop1, prop2 }) => {
   // State
   const [state, setState] = useState();
-  
+
   // Effects
   useEffect(() => {
     // Side effects
   }, []);
-  
+
   // Event handlers
   const handleEvent = useCallback(() => {
     // Event handling logic
   }, []);
-  
+
   // Early returns
   if (!data) return <Loading />;
-  
+
   // Main render
-  return (
-    <div>
-      {/* JSX */}
-    </div>
-  );
+  return <div>{/* JSX */}</div>;
 };
 
 export default MyComponent;
 ```
 
 ### Error Handling
+
 ```typescript
 // API error handling
 const fetchData = async () => {
   try {
     setLoading(true);
     setError(null);
-    
-    const response = await axios.get('/api/data');
+
+    const response = await axios.get("/api/data");
     setData(response.data);
   } catch (error) {
-    const message = error.response?.data?.message || 'An error occurred';
+    const message = error.response?.data?.message || "An error occurred";
     setError(message);
     toast.error(message);
   } finally {
@@ -1187,6 +1234,7 @@ class ErrorBoundary extends React.Component {
 ```
 
 ### Accessibility
+
 ```tsx
 // Semantic HTML
 <main role="main">
@@ -1197,7 +1245,7 @@ class ErrorBoundary extends React.Component {
 </main>
 
 // ARIA labels
-<button 
+<button
   aria-label="Delete blog post"
   onClick={handleDelete}
 >
@@ -1206,7 +1254,7 @@ class ErrorBoundary extends React.Component {
 
 // Form accessibility
 <label htmlFor="email">Email Address</label>
-<input 
+<input
   id="email"
   type="email"
   aria-describedby="email-error"
@@ -1220,29 +1268,30 @@ class ErrorBoundary extends React.Component {
 ```
 
 ### SEO Optimization
+
 ```typescript
 // Page metadata
 export const metadata: Metadata = {
-  title: 'Blog Title | Reader\'s Blog',
-  description: 'Blog description for SEO',
-  keywords: 'blog, nextjs, react',
+  title: "Blog Title | Reader's Blog",
+  description: "Blog description for SEO",
+  keywords: "blog, nextjs, react",
   openGraph: {
-    title: 'Blog Title',
-    description: 'Blog description',
-    images: ['/og-image.jpg'],
+    title: "Blog Title",
+    description: "Blog description",
+    images: ["/og-image.jpg"],
   },
   twitter: {
-    card: 'summary_large_image',
-    title: 'Blog Title',
-    description: 'Blog description',
-    images: ['/twitter-image.jpg'],
+    card: "summary_large_image",
+    title: "Blog Title",
+    description: "Blog description",
+    images: ["/twitter-image.jpg"],
   },
 };
 
 // Dynamic metadata
 export async function generateMetadata({ params }): Promise<Metadata> {
   const blog = await fetchBlog(params.id);
-  
+
   return {
     title: blog.title,
     description: blog.desc.substring(0, 160),
@@ -1255,6 +1304,7 @@ export async function generateMetadata({ params }): Promise<Metadata> {
 ### Common Issues and Solutions
 
 #### 1. **Hydration Mismatch**
+
 ```typescript
 // Problem: Server and client render differently
 // Solution: Use useEffect for client-only code
@@ -1266,31 +1316,33 @@ if (!isClient) return null;
 ```
 
 #### 2. **localStorage is not defined**
+
 ```typescript
 // Problem: localStorage accessed during SSR
 // Solution: Check if window exists
 const getUserId = () => {
-  if (typeof window !== 'undefined') {
-    return localStorage.getItem('userId');
+  if (typeof window !== "undefined") {
+    return localStorage.getItem("userId");
   }
   return null;
 };
 ```
 
 #### 3. **API Calls Failing**
+
 ```typescript
 // Debug API calls
 const apiCall = async () => {
   try {
-    console.log('Making API call to:', url);
+    console.log("Making API call to:", url);
     const response = await axios.get(url);
-    console.log('Response:', response.data);
+    console.log("Response:", response.data);
     return response.data;
   } catch (error) {
-    console.error('API Error:', {
+    console.error("API Error:", {
       message: error.message,
       status: error.response?.status,
-      data: error.response?.data
+      data: error.response?.data,
     });
     throw error;
   }
@@ -1298,18 +1350,20 @@ const apiCall = async () => {
 ```
 
 #### 4. **Image Loading Issues**
+
 ```tsx
 // Handle broken images
 <Image
   src={src}
   alt={alt}
   onError={(e) => {
-    e.currentTarget.src = '/fallback-image.jpg';
+    e.currentTarget.src = "/fallback-image.jpg";
   }}
 />
 ```
 
 #### 5. **Form Validation Not Working**
+
 ```typescript
 // Ensure schema matches form fields
 const schema = z.object({
@@ -1331,21 +1385,23 @@ const form = useForm({
 ### Debugging Tools
 
 #### React Developer Tools
+
 - Install React DevTools browser extension
 - Inspect component state and props
 - Profile component performance
 
 #### Next.js Debugging
+
 ```javascript
 // next.config.mjs
 const nextConfig = {
   // Enable source maps in production
   productionBrowserSourceMaps: true,
-  
+
   // Webpack configuration for debugging
   webpack: (config, { dev, isServer }) => {
     if (dev) {
-      config.devtool = 'source-map';
+      config.devtool = "source-map";
     }
     return config;
   },
@@ -1353,20 +1409,21 @@ const nextConfig = {
 ```
 
 #### Network Debugging
+
 ```typescript
 // Axios interceptors for debugging
-axios.interceptors.request.use(request => {
-  console.log('Starting Request:', request);
+axios.interceptors.request.use((request) => {
+  console.log("Starting Request:", request);
   return request;
 });
 
 axios.interceptors.response.use(
-  response => {
-    console.log('Response:', response);
+  (response) => {
+    console.log("Response:", response);
     return response;
   },
-  error => {
-    console.log('Response Error:', error);
+  (error) => {
+    console.log("Response Error:", error);
     return Promise.reject(error);
   }
 );
